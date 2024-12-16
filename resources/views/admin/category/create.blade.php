@@ -41,6 +41,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="image">Image</label>
+                                {{-- <input type="file" name="image" id="image" class="form-control dropzone dz-clickable dz-message needsclick"> --}}
                                 <div id="image" class="dropzone dz-clickable">
                                     <div class="dz-message needsclick">
                                         <br>Drop files here or click to upload.<br><br>
