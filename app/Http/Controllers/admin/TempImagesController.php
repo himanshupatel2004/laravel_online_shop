@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class TempImagesController extends Controller
 {
-    public function create(Request $request){
+    public function create(Request                                                                                                   $request){
         $image = $request->image;
 
         if(!empty($image)){
-           $ext = $image->getClienOriginalExtension();
+           $ext = $image->getClientOriginalExtension();
            $newName = time().'.'.$ext;
 
            $tempImage = new TempImage();
@@ -20,11 +20,11 @@ class TempImagesController extends Controller
 
            $image->move(public_path().'/temp',$newName);
 
-           return response->json([
+            return response()->json([
              'status' => true,
              'image_id' => $tempImage->id,
              'message' => 'Image uploaded successfully'
-           ]);
+            ]);
         }
     }
 }

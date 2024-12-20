@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
+use App\Models\TempImage;
+use Illuminate\Support\Facades\File;
+use image;
+
+
 
 
 
@@ -38,6 +43,28 @@ class CategoryController extends Controller
             $category->status = $request->status;
             $category->save();
 
+            // Save Image Here
+            if (!empty($request->image_id)) {
+                $tempImage = TempImage::find($request->image_id);
+                $extArray = explode('.',$tempImage->name);
+                $ext = last($extArray);
+
+                $newImageName = $category->id.'.'.$ext;
+                $sPath = public_path().'/temp/'.$temlImage->name;
+                $dPath = public_path().'/uploads/category/'.$newImageName;
+                File::copy($sPath,$dPath);
+
+                // Generate Image thumbnail
+                $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
+                $img = Image::make($sPath);
+                $img->resize(450, 600);
+                $img->save($dPath);
+
+                $category->image = $newImageName;
+                $category->save();
+
+            }
+
             $request->session()->flash('success','Category created successfully');
             return response()->json([
                 'status' => true,
@@ -51,8 +78,15 @@ class CategoryController extends Controller
         }
     }
 
-    public function edit() {
 
+    public function edit($categoryId, Request $request) {
+
+        $category = Category::find($categoryId);
+        if(empty($category)) {
+            return redirect()->route('categories.index');
+        }
+
+      return view('admin.category.edit', compact('category'));
     }
 
     public function update() {
