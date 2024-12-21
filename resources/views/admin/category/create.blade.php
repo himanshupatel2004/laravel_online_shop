@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 
+@include('admin.message')
 @section('content')
 <section class="content-header">
     <div class="container-fluid my-2">
@@ -18,7 +19,8 @@
 <section class="content">
     <!-- Default box -->
     <div class="container-fluid">
-        <form action="{{ route('categories.store') }}" id="categoryForm" name="categoryForm" method="POST">
+        <form action="{{ route('categories.store') }}" id="categoryForm" name="categoryForm" method="POST"
+            enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body">

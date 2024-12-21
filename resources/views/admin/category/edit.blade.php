@@ -18,15 +18,17 @@
 <section class="content">
     <!-- Default box -->
     <div class="container-fluid">
-        <form action="{{ route('categories.store') }}" id="categoryForm" name="categoryForm" method="POST">
+        <form action="{{ route('categories.update', $category->id) }}" id="categoryForm" name="categoryForm" method="POST">
             @csrf
+            @method('PUT')
             <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{ $category->name }}">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name"
+                                    value="{{ $category->name }}">
                                 <p></p>
                             </div>
                         </div>
@@ -34,7 +36,8 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="slug">Slug</label>
-                                <input type="text" name="slug" id="slug" class="form-control" placeholder="Slug" value="{{ $category->slug }}">
+                                <input type="text" name="slug" id="slug" class="form-control" placeholder="Slug"
+                                    value="{{ $category->slug }}">
                                 <p></p>
                             </div>
                         </div>
@@ -67,7 +70,7 @@
                 </div>
             </div>
             <div class="pb-5 pt-3">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{ route('categories.index') }}" class="btn btn-outline-dark ml-3">Cancel</a>
             </div>
         </form>
@@ -84,15 +87,14 @@
         var element = $(this);
         $("button[type=submit]").prop('disabled',true);
         $.ajax({
-            url: '{{ route("categories.store") }}',
-            type: 'post',
+            url: '{{ route("categories.update", $category->id) }}',
+            type: 'put',
             data: element.serializeArray(),
             datatype: 'json',
             success: function(response) {
                 $("button[type=submit]").prop('disabled',false);
                 if(response["status"] == true){
-
-                    window.location.href="{{ route('categories.index') }}";
+                    window.location.href = "{{ route('categories.index') }}";
                     $("#name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
                     $("#slug").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
                 } else{
@@ -111,7 +113,7 @@
 
             },
             error: function(jqXHR, exception) {
-                console.log("Something went wrong");
+              console.log("Something went wrong");
             }
         });
     });

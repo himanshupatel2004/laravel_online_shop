@@ -86,7 +86,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="#" class="text-danger w-4 h-4 mr-1">
+                                <a href="javascript:void(0)" onclick="deleteCategory({{ $category->id }})" class="text-danger w-4 h-4 mr-1">
                                     <svg wire:loading.remove.delay="" wire:target=""
                                         class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -99,7 +99,6 @@
                         </tr>
                         @endforeach
                         @else
-
                         <tr>
                             <td colspan="5">Records Not Found</td>
                         </tr>
@@ -119,7 +118,27 @@
 
 @section('customJs')
 <script>
-
+    function deleteCategory(id){
+        var url = '{{ route("categories.delete", ":id") }}';
+        // alert(url);
+        var newUrl = url.replace(":id", id);
+        if(confirm("Are you sure want to delete")) {
+            $.ajax({
+                url: newUrl,
+                type: 'DELETE',
+                data: {},
+                datatype: 'json',
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    if(response["status"]){
+                        window.location.href = "{{ route('categories.index') }}";
+                    }
+                }
+            });
+        }
+    }
 </script>
 
 @endsection
