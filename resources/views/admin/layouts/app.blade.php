@@ -43,7 +43,8 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link p-0 pr-3" data-toggle="dropdown" href="#">
-                        <img src="{{ asset('admin-assets/img/avatar5.png') }}" class='img-circle elevation-2' width="40" height="40" alt="">
+                        <img src="{{ asset('admin-assets/img/avatar5.png') }}" class='img-circle elevation-2' width="40"
+                            height="40" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
                         <h4 class="h4 mb-0"><strong>{{ Auth::guard('admin')->user()->name }}</strong></h4>
@@ -88,18 +89,35 @@
     <script src="{{ asset('admin-assets/js/adminlte.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('admin-assets/js/demo.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script src="https://examples.unlayer.com/examples/custom-js/custom.js"></script>
 
 
 
     <script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    })
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
+        // $( document ).ready(function() {
+        //     $("#cat_name").on("input", function () {
+        //         const nameValue = $(this).val();
+        //         console.log('Pawan Kumar',nameValue);
+        //         const slug = nameValue
+        //             .toLowerCase()
+        //             .trim()
+        //             .replace(/[^a-z0-9]+/g, "-")
+        //             .replace(/^-+|-+$/g, "");
+
+        //         $("#slug").val(slug);
+        //     });
+        // });
+
     </script>
+
+  @stack('scripts')
+
 
 </body>
 

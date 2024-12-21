@@ -80,7 +80,8 @@
 <!-- /.content -->
 @endsection
 
-@section('customJs')
+@push('scripts')
+
 <script>
     $("#categoryForm").submit(function(event){
         event.preventDefault();
@@ -161,4 +162,4 @@
 
 </script>
 
-@endsection
+@endpush

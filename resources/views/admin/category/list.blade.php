@@ -116,9 +116,11 @@
 <!-- /.content -->
 @endsection
 
-@section('customJs')
+@push('scripts')
+
 <script>
     function deleteCategory(id){
+        alert(id);
         var url = '{{ route("categories.delete", ":id") }}';
         // alert(url);
         var newUrl = url.replace(":id", id);
@@ -141,4 +143,4 @@
     }
 </script>
 
-@endsection
+@endpush

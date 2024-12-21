@@ -90,7 +90,6 @@ class CategoryController extends Controller
         if(empty($category)) {
             return redirect()->route('categories.index');
         }
-
         return view('admin.category.edit', compact('category'));
     }
 

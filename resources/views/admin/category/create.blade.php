@@ -74,8 +74,21 @@
 <!-- /.content -->
 @endsection
 
-@section('customJs')
+@push('scripts')
 <script>
+    $( document ).ready(function() {
+        $("#name").on("input", function () {
+            const nameValue = $(this).val();
+            console.log('Pawan Kumar',nameValue);
+            const slug = nameValue
+                .toLowerCase()
+                .trim()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-+|-+$/g, "");
+
+            $("#slug").val(slug);
+        });
+    });
     $("#categoryForm").submit(function(event){
         event.preventDefault();
         var element = $(this);
@@ -113,22 +126,22 @@
         });
     });
 
-    $("#name").change(function(){
-        element = $(this);
-        $("button[type=submit]").prop('disabled',true);
-        $.ajax({
-            url: '{{ route("getSlug") }}',
-            type: 'get',
-            data: {title: element.val()},
-            datatype: 'json',
-            success: function(response) {
-                $("button[type=submit]").prop('disabled',false);
-                if (response["status"] == true) {
-                  $("#slug").val(response["slug"]);
-                }
-            }
-        });
-    });
+    // $("#name").change(function(){
+    //     element = $(this);
+    //     $("button[type=submit]").prop('disabled',true);
+    //     $.ajax({
+    //         url: '{{ route("getSlug") }}',
+    //         type: 'get',
+    //         data: {title: element.val()},
+    //         datatype: 'json',
+    //         success: function(response) {
+    //             $("button[type=submit]").prop('disabled',false);
+    //             if (response["status"] == true) {
+    //               $("#slug").val(response["slug"]);
+    //             }
+    //         }
+    //     });
+    // });
 
     Dropzone.autoDiscover = false;
     const dropzone = new Dropzone("#image", {
@@ -156,4 +169,4 @@
 
 </script>
 
-@endsection
+@endpush
