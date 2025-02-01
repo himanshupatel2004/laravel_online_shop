@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -53,7 +52,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         @if ($categories->isNotEmpty())
                         @foreach ($categories as $category)
                         <tr>
@@ -75,7 +73,6 @@
                                         d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                                 @endif
-
                             </td>
                             <td>
                                 <a href="{{ route('categories.edit',$category->id) }}">
@@ -86,7 +83,8 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="javascript:void(0)" onclick="deleteCategory({{ $category->id }})" class="text-danger w-4 h-4 mr-1">
+                                <a href="javascript:void(0)" onclick="deleteCategory({{ $category->id }})"
+                                    class="text-danger w-4 h-4 mr-1">
                                     <svg wire:loading.remove.delay="" wire:target=""
                                         class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -115,9 +113,7 @@
 </section>
 <!-- /.content -->
 @endsection
-
 @push('scripts')
-
 <script>
     function deleteCategory(id){
         alert(id);
@@ -142,5 +138,4 @@
         }
     }
 </script>
-
 @endpush

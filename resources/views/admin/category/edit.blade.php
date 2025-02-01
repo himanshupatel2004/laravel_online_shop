@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-
 @section('content')
 <section class="content-header">
     <div class="container-fluid my-2">
@@ -32,7 +31,6 @@
                                 <p></p>
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="slug">Slug</label>
@@ -79,9 +77,7 @@
 </section>
 <!-- /.content -->
 @endsection
-
 @push('scripts')
-
 <script>
     $("#categoryForm").submit(function(event){
         event.preventDefault();
@@ -111,14 +107,12 @@
                         $("#slug").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
                     }
                 }
-
             },
             error: function(jqXHR, exception) {
               console.log("Something went wrong");
             }
         });
     });
-
     $("#name").change(function(){
         element = $(this);
         $("button[type=submit]").prop('disabled',true);
@@ -135,7 +129,6 @@
             }
         });
     });
-
     Dropzone.autoDiscover = false;
     const dropzone = new Dropzone("#image", {
         init: function() {
@@ -145,7 +138,6 @@
                 }
             });
         },
-
         url: "{{ route('temp-images.create') }}",
         maxFiles: 1,
         paramName: 'image',
@@ -158,8 +150,5 @@
             $("#image_id").val(response.image_id);
         }
     });
-
-
 </script>
-
 @endpush

@@ -44,11 +44,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
         Route::delete('/categories/{category}', [CategoryController::class, 'delete'])->name('categories.delete');
 
-
-
         //temp-images.create
         Route::post('/upload-temp-image', [TempImagesController::class, 'create'])->name('temp-images.create');
-
 
         Route::get('/getSlug',function(Request $reques){
             $slug = '';

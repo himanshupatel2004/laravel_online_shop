@@ -11,13 +11,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('admin-assets/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/plugins/dropzone/min/dropzone.min.css') }}">
-
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('admin-assets/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/css/custom.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -34,7 +32,6 @@
 						<li class="breadcrumb-item active">Dashboard</li>
 					</ol> -->
             </div>
-
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -73,10 +70,8 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-
             <strong>Copyright &copy; 2014-2022 AmazingShop All rights reserved.
         </footer>
-
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->
@@ -84,16 +79,12 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('admin-assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('admin-assets/plugins/dropzone/min/dropzone.min.js') }}"></script>
-
     <!-- AdminLTE App -->
     <script src="{{ asset('admin-assets/js/adminlte.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('admin-assets/js/demo.js') }}"></script>
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script src="https://examples.unlayer.com/examples/custom-js/custom.js"></script>
-
-
-
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -115,10 +106,7 @@
         // });
 
     </script>
-
   @stack('scripts')
-
-
 </body>
 
 </html>
